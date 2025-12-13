@@ -1,0 +1,19 @@
+{
+  "homepage": "https://vueplay.com",
+  "name": "@vueplayio/block",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/App.vue",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.5.25"
+  },
+  "devDependencies": {
+    "@rollup/plugin-data-uri": "^1.0.3",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.7"
+  }
+}
