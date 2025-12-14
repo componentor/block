@@ -1,7 +1,7 @@
 {
   "homepage": "https://vueplay.com",
   "name": "@componentor/block",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "type": "module",
   "main": "src/App.vue",
   "scripts": {
