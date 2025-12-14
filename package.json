@@ -1,6 +1,6 @@
 {
   "homepage": "https://vueplay.com",
-  "name": "@componentor/block",
+  "name": "@vueplayio/block",
   "version": "1.0.1",
   "type": "module",
   "main": "src/App.vue",
