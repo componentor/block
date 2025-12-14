@@ -74,14 +74,10 @@
 		wysiwyg: true,
 		inject: {
 			theme: {
-				default: () => ({
-					name: ''
-				})
+				default: ''
 			},
 			breakpoint: {
-				default: () => ({
-					name: ''
-				})
+				default: ''
 			}
 		},
 		data() {
@@ -160,8 +156,8 @@
 				if (!this.cstyleString) return '';
 				const parsed = parse(this.cstyleString);
 				return getStyle(parsed, {
-					theme: this.themeName || this.theme?.name,
-					breakpoint: this.breakpointName || this.breakpoint?.name,
+					theme: this.themeName || this.theme,
+					breakpoint: this.breakpointName || this.breakpoint,
 					states: this.stateArray,
 					breakpointStrategy: this.breakpointStrategy,
 					themeStrategy: this.themeStrategy
