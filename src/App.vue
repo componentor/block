@@ -22,43 +22,43 @@
 	 * @component
 	 * @example
 	 * <!-- Basic usage -->
-	 * <Block cstyle="padding: 16px; background: #fff">
+	 * <Block adapt="padding: 16px; background: #fff">
 	 *   Content here
 	 * </Block>
 	 *
 	 * @example
 	 * <!-- Responsive styles with breakpoints -->
-	 * <Block cstyle="padding: 8px; md: padding: 16px; lg: padding: 24px">
+	 * <Block adapt="padding: 8px; md: padding: 16px; lg: padding: 24px">
 	 *   Responsive padding
 	 * </Block>
 	 *
 	 * @example
 	 * <!-- With state-based styles -->
-	 * <Block cstyle="background: white; hover: background: gray">
+	 * <Block adapt="background: white; hover: background: gray">
 	 *   Hover me
 	 * </Block>
 	 *
 	 * @example
 	 * <!-- With theme support -->
-	 * <Block cstyle="dark: background: #333; light: background: #fff">
+	 * <Block adapt="dark: background: #333; light: background: #fff">
 	 *   Themed content
 	 * </Block>
 	 *
 	 * @example
 	 * <!-- Object syntax -->
-	 * <Block :cstyle="{ padding: '16px', 'md': 'padding: 24px' }">
+	 * <Block :adapt="{ padding: '16px', 'md': 'padding: 24px' }">
 	 *   Object syntax
 	 * </Block>
 	 *
 	 * @example
 	 * <!-- Array syntax -->
-	 * <Block :cstyle="['padding: 16px', { hover: 'background: gray' }]">
+	 * <Block :adapt="['padding: 16px', { hover: 'background: gray' }]">
 	 *   Array syntax
 	 * </Block>
 	 *
 	 * @props
 	 * - tag: HTML tag to render (default: 'div')
-	 * - cstyle: Responsive/themeable styles as string, object, or array
+	 * - adapt: Responsive/themeable styles as string, object, or array
 	 * - state: Custom states to apply (string or array, e.g., 'selected' or ['selected', 'expanded'])
 	 * - disabled: Adds 'disabled' state
 	 * - themeName: Override injected theme
@@ -69,7 +69,7 @@
 	import {
 		parse,
 		getStyle
-	} from '@componentor/breakpoint';
+	} from '@componentor/adaptive';
 	export default {
 		wysiwyg: true,
 		inject: {
@@ -93,7 +93,7 @@
 				type: String,
 				default: 'div'
 			},
-			cstyle: {
+			adapt: {
 				type: [String, Object, Array],
 				default: ''
 			},
@@ -125,11 +125,11 @@
 			}
 		},
 		computed: {
-			cstyleString() {
-				if (!this.cstyle) return '';
-				if (typeof this.cstyle === 'string') return this.cstyle;
-				if (Array.isArray(this.cstyle)) {
-					return this.cstyle.map(item => {
+			adaptString() {
+				if (!this.adapt) return '';
+				if (typeof this.adapt === 'string') return this.adapt;
+				if (Array.isArray(this.adapt)) {
+					return this.adapt.map(item => {
 							if (typeof item === 'string') return item;
 							return Object.entries(item)
 								.map(([key, value]) => `${key}:${value}`)
@@ -137,7 +137,7 @@
 						})
 						.join('; ');
 				}
-				return Object.entries(this.cstyle)
+				return Object.entries(this.adapt)
 					.map(([key, value]) => `${key}:${value}`)
 					.join('; ');
 			},
@@ -153,8 +153,8 @@
 				return [...native, ...custom];
 			},
 			computedStyle() {
-				if (!this.cstyleString) return '';
-				const parsed = parse(this.cstyleString);
+				if (!this.adaptString) return '';
+				const parsed = parse(this.adaptString);
 				return getStyle(parsed, {
 					theme: this.themeName || this.theme,
 					breakpoint: this.breakpointName || this.breakpoint,
